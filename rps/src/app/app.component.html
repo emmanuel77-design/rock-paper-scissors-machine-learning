@@ -1,0 +1,39 @@
+<div class="text-center mt-9 mb-9">
+  <h1 class="text-5xl mb-6">Hi 👋🏽,</h1>
+  <p class="text-5xl mb-6">Welcome to Rock ✊🏽 Paper 🖐🏽 Scissors ✌🏽</p>
+  <p class="font-[300] text-3xl">Make a move once the countdown ends</p>
+  <p class="font-[200] text-1xl mt-2">Keep your hands within the white square</p>
+
+  <!-- TODO: add a skeleton loader when model is not yet active -->
+
+  <div class="flex justify-center items-center mt-6 relative">
+    <div class="flex flex-col items-center mr-4">
+      <p class="text-3xl mb-2">Player</p>
+      <p class="text-3xl mb-2">{{ playerScore }}</p>
+      <div #videoContainer class="rounded-md mb-4">
+        <video class="w-full h-full border-2 border-red" #videoElem autoplay></video>
+        <canvas class="hidden" #canvasElem></canvas>
+      </div>
+      <p class="text-2xl" *ngIf="showMoves">You played {{ playerMove }}</p>
+    </div>
+    <div class="flex flex-col items-center">
+      <p class="text-3xl mb-2">Computer</p>
+      <p class="text-3xl mb-2">{{ computerScore }}</p>
+      <div class="rounded-md h-[45vh] w-[45vw] flex items-center justify-center mb-4">
+        <p class="text-9xl">{{ computerMove }}</p>
+      </div>
+      <p class="text-2xl" *ngIf="showMoves">Computer played {{ computerMove }}</p>
+    </div>
+
+    <p class="absolute text-9xl text-gray-500 animate-ping" *ngIf="countdownVisible">{{ countdown }}</p>
+    <p class="absolute text-9xl text-black animate-pulse" *ngIf="winnerVisible">{{ winnerStatement }}</p>
+  </div>
+
+  <div class="flex justify-center mt-6">
+    <!-- add a hover effect for the button colors -->
+    <button class="bg-[#f5f5f5] text-[#333] font-[300] text-3xl px-6 py-3 rounded-md mr-4 hover:bg-[#333] hover:text-[#fff]"
+      (click)="playGame()">Play Game</button>
+    <button class="bg-[#f5f5f5] text-[#333] font-[300] text-3xl px-6 py-3 rounded-md hover:bg-[#333] hover:text-[#fff]"
+      (click)="resetGame()">Reset Game</button>
+  </div>
+</div>
